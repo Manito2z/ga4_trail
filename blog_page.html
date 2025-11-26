@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GA4 Test Blog</title>
+
+    <!-- Google Analytics 4 Tracking Code -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKDH38S40H"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+
+        gtag('config', 'G-GKDH38S40H');
+    </script>
+
+    <style>
+        :root {
+            --primary: #6366f1;
+            --secondary: #a855f7;
+            --dark: #0f172a;
+            --light: #f8fafc;
+            --text-muted: #94a3b8;
+        }
+
+        body {
+            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+            background-color: var(--dark);
+            color: var(--light);
+            margin: 0;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 2rem;
+        }
+
+        header {
+            padding: 2rem 0;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+            margin-bottom: 3rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        h1 {
+            margin: 0;
+            font-size: 2rem;
+            background: linear-gradient(to right, var(--primary), var(--secondary));
+            -webkit-background-clip: text;
+            background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .nav-link {
+            color: var(--light);
+            text-decoration: none;
+            font-weight: bold;
+            padding: 0.5rem 1rem;
+            border-radius: 0.5rem;
+            transition: background 0.2s;
+        }
+
+        .nav-link:hover {
+            background: rgba(255, 255, 255, 0.1);
+        }
+
+        article {
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 1rem;
+            padding: 2rem;
+            margin-bottom: 2rem;
+            transition: transform 0.2s;
+        }
+
+        article:hover {
+            transform: translateY(-2px);
+            border-color: var(--primary);
+        }
+
+        h2 {
+            margin-top: 0;
+            color: var(--primary);
+        }
+
+        .meta {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+        }
+
+        .read-more {
+            display: inline-block;
+            margin-top: 1rem;
+            color: var(--secondary);
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        .read-more:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="container">
+        <header>
+            <h1>The Test Blog</h1>
+            <nav>
+                <a href="index.html" class="nav-link">← Back to Home</a>
+            </nav>
+        </header>
+
+        <article>
+            <h2>Understanding GA4 Events</h2>
+            <div class="meta">Posted on Nov 26, 2025 by Analytics Team</div>
+            <p>Google Analytics 4 (GA4) uses an event-based data model. Everything is an event, from page views to
+                button clicks. This flexibility allows for more granular tracking of user interactions across your
+                website and apps.</p>
+            <a href="#" class="read-more">Read full article &rarr;</a>
+        </article>
+
+        <article>
+            <h2>Why Server-Side Tracking Matters</h2>
+            <div class="meta">Posted on Nov 25, 2025 by Dev Ops</div>
+            <p>While client-side tracking is easy to implement, server-side tracking offers better data accuracy and
+                control. It helps bypass ad blockers and ensures that your critical conversion data reaches your
+                analytics platform reliably.</p>
+            <a href="#" class="read-more">Read full article &rarr;</a>
+        </article>
+
+        <article>
+            <h2>The Future of Digital Marketing</h2>
+            <div class="meta">Posted on Nov 24, 2025 by Marketing Guru</div>
+            <p>As privacy regulations tighten, first-party data becomes gold. Building direct relationships with your
+                customers and respecting their privacy choices will be the cornerstone of successful digital marketing
+                strategies in the coming years.</p>
+            <a href="#" class="read-more">Read full article &rarr;</a>
+        </article>
+
+    </div>
+
+</body>
+
+</html>
