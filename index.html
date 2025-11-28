@@ -159,8 +159,11 @@
     <div class="card">
       <h2>1. Button Clicks</h2>
       <p>Test standard clicks and custom event triggers.</p>
-      <button class="btn btn-primary" id="btn-purchase">Simulate Purchase</button>
-      <button class="btn btn-secondary" id="btn-signup">Sign Up</button>
+      <button class="btn btn-primary" id="btn-purchase"
+        onclick="gtag('event', 'purchase', { currency: 'USD', value: 99.99, transaction_id: 'T_' + Math.floor(Math.random() * 10000) }); alert('Purchase Event Sent!');">Simulate
+        Purchase ($99.99)</button>
+      <button class="btn btn-secondary" id="btn-signup"
+        onclick="gtag('event', 'sign_up', { method: 'email' }); alert('Sign Up Event Sent!');">Sign Up</button>
     </div>
 
     <!-- Section 2: Outbound Links -->
@@ -211,6 +214,20 @@
         Keep Scrolling...
       </div>
       <p style="text-align: center; margin-top: 2rem;">You've reached the bottom!</p>
+    </div>
+
+    <!-- Section 7: Traffic Simulation (UTM Parameters) -->
+    <div class="card">
+      <h2>7. Simulate Traffic Sources</h2>
+      <p>Click these buttons to reload the page with UTM parameters (simulating a visitor from these sources).</p>
+      <a href="?utm_source=facebook&utm_medium=social&utm_campaign=test_campaign" class="btn btn-primary"
+        style="background: #1877F2;">Simulate Facebook Visitor</a>
+      <a href="?utm_source=google&utm_medium=cpc&utm_campaign=test_campaign" class="btn btn-primary"
+        style="background: #DB4437;">Simulate Google Ads Visitor</a>
+      <a href="?utm_source=newsletter&utm_medium=email&utm_campaign=weekly_update" class="btn btn-primary"
+        style="background: #F59E0B;">Simulate Email Visitor</a>
+      <br>
+      <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">Clear Parameters</a>
     </div>
 
   </div>
