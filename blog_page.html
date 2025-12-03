@@ -1,112 +1,91 @@
 <!DOCTYPE html>
 <html lang="en">
+--light: #f8fafc;
+--text-muted: #94a3b8;
+}
 
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GA4 Test Blog</title>
+body {
+font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
+background-color: var(--dark);
+color: var(--light);
+margin: 0;
+line-height: 1.6;
+}
 
-    <!-- Google Analytics 4 Tracking Code -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKDH38S40H"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag() { dataLayer.push(arguments); }
-        gtag('js', new Date());
+.container {
+max-width: 800px;
+margin: 0 auto;
+padding: 2rem;
+}
 
-        gtag('config', 'G-GKDH38S40H');
-    </script>
+header {
+padding: 2rem 0;
+border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+margin-bottom: 3rem;
+display: flex;
+justify-content: space-between;
+align-items: center;
+}
 
-    <style>
-        :root {
-            --primary: #6366f1;
-            --secondary: #a855f7;
-            --dark: #0f172a;
-            --light: #f8fafc;
-            --text-muted: #94a3b8;
-        }
+h1 {
+margin: 0;
+font-size: 2rem;
+background: linear-gradient(to right, var(--primary), var(--secondary));
+-webkit-background-clip: text;
+background-clip: text;
+-webkit-text-fill-color: transparent;
+}
 
-        body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background-color: var(--dark);
-            color: var(--light);
-            margin: 0;
-            line-height: 1.6;
-        }
+.nav-link {
+color: var(--light);
+text-decoration: none;
+font-weight: bold;
+padding: 0.5rem 1rem;
+border-radius: 0.5rem;
+transition: background 0.2s;
+}
 
-        .container {
-            max-width: 800px;
-            margin: 0 auto;
-            padding: 2rem;
-        }
+.nav-link:hover {
+background: rgba(255, 255, 255, 0.1);
+}
 
-        header {
-            padding: 2rem 0;
-            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
-            margin-bottom: 3rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-        }
+article {
+background: rgba(255, 255, 255, 0.05);
+border: 1px solid rgba(255, 255, 255, 0.1);
+border-radius: 1rem;
+padding: 2rem;
+margin-bottom: 2rem;
+transition: transform 0.2s;
+}
 
-        h1 {
-            margin: 0;
-            font-size: 2rem;
-            background: linear-gradient(to right, var(--primary), var(--secondary));
-            -webkit-background-clip: text;
-            background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
+article:hover {
+transform: translateY(-2px);
+border-color: var(--primary);
+}
 
-        .nav-link {
-            color: var(--light);
-            text-decoration: none;
-            font-weight: bold;
-            padding: 0.5rem 1rem;
-            border-radius: 0.5rem;
-            transition: background 0.2s;
-        }
+h2 {
+margin-top: 0;
+color: var(--primary);
+}
 
-        .nav-link:hover {
-            background: rgba(255, 255, 255, 0.1);
-        }
+.meta {
+color: var(--text-muted);
+font-size: 0.9rem;
+margin-bottom: 1rem;
+}
 
-        article {
-            background: rgba(255, 255, 255, 0.05);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            border-radius: 1rem;
-            padding: 2rem;
-            margin-bottom: 2rem;
-            transition: transform 0.2s;
-        }
+.read-more {
+display: inline-block;
+margin-top: 1rem;
+color: var(--secondary);
+text-decoration: none;
+font-weight: bold;
+}
 
-        article:hover {
-            transform: translateY(-2px);
-            border-color: var(--primary);
-        }
-
-        h2 {
-            margin-top: 0;
-            color: var(--primary);
-        }
-
-        .meta {
-            color: var(--text-muted);
-            font-size: 0.9rem;
-            margin-bottom: 1rem;
-        }
-
-        .read-more {
-            display: inline-block;
-            margin-top: 1rem;
-            color: var(--secondary);
-            text-decoration: none;
-            font-weight: bold;
-        }
-
-        .read-more:hover {
-            text-decoration: underline;
-        }
-    </style>
+.read-more:hover {
+text-decoration: underline;
+}
+</style>
 </head>
 
 <body>

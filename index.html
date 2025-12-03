@@ -6,15 +6,7 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>GA4 Event Testing Playground</title>
 
-  <!-- Google Analytics 4 Tracking Code -->
-  <script async src="https://www.googletagmanager.com/gtag/js?id=G-GKDH38S40H"></script>
-  <script>
-    window.dataLayer = window.dataLayer || [];
-    function gtag() { dataLayer.push(arguments); }
-    gtag('js', new Date());
 
-    gtag('config', 'G-GKDH38S40H');
-  </script>
 
   <style>
     :root {
@@ -160,10 +152,10 @@
       <h2>1. Button Clicks</h2>
       <p>Test standard clicks and custom event triggers.</p>
       <button class="btn btn-primary" id="btn-purchase"
-        onclick="gtag('event', 'purchase', { currency: 'USD', value: 99.99, transaction_id: 'T_' + Math.floor(Math.random() * 10000) }); alert('Purchase Event Sent!');">Simulate
+        onclick="alert('Purchase Event Sent!');">Simulate
         Purchase ($99.99)</button>
       <button class="btn btn-secondary" id="btn-signup"
-        onclick="gtag('event', 'sign_up', { method: 'email' }); alert('Sign Up Event Sent!');">Sign Up</button>
+        onclick="alert('Sign Up Event Sent!');">Sign Up</button>
     </div>
 
     <!-- Section 2: Outbound Links -->
