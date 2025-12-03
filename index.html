@@ -4,226 +4,62 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>GA4 Event Testing Playground</title>
+  <title>Urban Threads | Premium T-Shirts</title>
 
+  <!-- Google Tag Manager -->
+  <script src="gtm.js"></script>
+  <!-- End Google Tag Manager -->
 
-
-  <style>
-    :root {
-      --primary: #6366f1;
-      --secondary: #a855f7;
-      --dark: #0f172a;
-      --light: #f8fafc;
-    }
-
-    body {
-      font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-      background-color: var(--dark);
-      color: var(--light);
-      margin: 0;
-      line-height: 1.6;
-    }
-
-    .container {
-      max-width: 800px;
-      margin: 0 auto;
-      padding: 2rem;
-    }
-
-    header {
-      text-align: center;
-      padding: 4rem 0;
-      background: linear-gradient(to right, var(--primary), var(--secondary));
-      border-radius: 0 0 2rem 2rem;
-      margin-bottom: 3rem;
-    }
-
-    h1 {
-      margin: 0;
-      font-size: 2.5rem;
-      text-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
-    }
-
-    .card {
-      background: rgba(255, 255, 255, 0.05);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 1rem;
-      padding: 2rem;
-      margin-bottom: 2rem;
-      backdrop-filter: blur(10px);
-    }
-
-    h2 {
-      border-bottom: 2px solid var(--primary);
-      padding-bottom: 0.5rem;
-      margin-top: 0;
-    }
-
-    .btn {
-      display: inline-block;
-      padding: 0.75rem 1.5rem;
-      border-radius: 0.5rem;
-      text-decoration: none;
-      font-weight: bold;
-      cursor: pointer;
-      transition: transform 0.2s, box-shadow 0.2s;
-      border: none;
-      margin-right: 1rem;
-      margin-bottom: 1rem;
-    }
-
-    .btn-primary {
-      background: var(--primary);
-      color: white;
-    }
-
-    .btn-secondary {
-      background: rgba(255, 255, 255, 0.1);
-      color: white;
-      border: 1px solid rgba(255, 255, 255, 0.2);
-    }
-
-    .btn:hover {
-      transform: translateY(-2px);
-      box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    }
-
-    input,
-    textarea {
-      width: 100%;
-      padding: 0.75rem;
-      margin-bottom: 1rem;
-      background: rgba(0, 0, 0, 0.2);
-      border: 1px solid rgba(255, 255, 255, 0.1);
-      border-radius: 0.5rem;
-      color: white;
-      box-sizing: border-box;
-    }
-
-    .video-wrapper {
-      position: relative;
-      padding-bottom: 56.25%;
-      /* 16:9 */
-      height: 0;
-      overflow: hidden;
-      border-radius: 1rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
-    }
-
-    .video-wrapper iframe {
-      position: absolute;
-      top: 0;
-      left: 0;
-      width: 100%;
-      height: 100%;
-    }
-
-    .scroll-spacer {
-      height: 150vh;
-      background: linear-gradient(to bottom, transparent, rgba(99, 102, 241, 0.1));
-      border-radius: 1rem;
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      color: rgba(255, 255, 255, 0.3);
-      font-size: 2rem;
-      margin-top: 2rem;
-    }
-  </style>
+  <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
+  <!-- Google Tag Manager (noscript) -->
+  <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSRJ9NDJ" height="0" width="0"
+      style="display:none;visibility:hidden"></iframe></noscript>
+  <!-- End Google Tag Manager (noscript) -->
 
-  <header>
-    <div class="container">
-      <h1>GA4 Event Playground</h1>
-      <p>Interact with elements below to trigger GA4 events</p>
-      <div style="margin-top: 1rem;">
-        <a href="blog_page.html" class="btn btn-secondary"
-          style="background: rgba(255,255,255,0.2); border: none;">Visit Blog Page &rarr;</a>
-      </div>
+  <nav class="navbar">
+    <a href="index.html" class="logo">URBAN THREADS</a>
+    <div class="nav-links">
+      <a href="index.html">Home</a>
+      <a href="products.html">Shop</a>
+      <a href="blog_page.html">Journal</a>
+      <a href="contact.html">Contact</a>
+    </div>
+    <div class="cart-icon">🛒 (0)</div>
+  </nav>
+
+  <header class="hero"
+    style="background-image: url('https://images.unsplash.com/photo-1523381210434-271e8be1f52b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1950&q=80');">
+    <div class="hero-content">
+      <h1>Essential Tees for Modern Life</h1>
+      <p style="margin-bottom: 2rem;">Premium cotton. Sustainable sourcing. Perfect fit.</p>
+      <a href="products.html" class="btn">Shop Collection</a>
     </div>
   </header>
 
-  <div class="container">
-
-    <!-- Section 1: Button Clicks -->
-    <div class="card">
-      <h2>1. Button Clicks</h2>
-      <p>Test standard clicks and custom event triggers.</p>
-      <button class="btn btn-primary" id="btn-purchase"
-        onclick="alert('Purchase Event Sent!');">Simulate
-        Purchase ($99.99)</button>
-      <button class="btn btn-secondary" id="btn-signup"
-        onclick="alert('Sign Up Event Sent!');">Sign Up</button>
-    </div>
-
-    <!-- Section 2: Outbound Links -->
-    <div class="card">
-      <h2>2. Outbound Links</h2>
-      <p>Clicking these should trigger 'click' events with 'outbound: true'.</p>
-      <a href="https://www.google.com" target="_blank" class="btn btn-secondary">Visit Google</a>
-      <a href="https://example.com" target="_blank" class="btn btn-secondary">Visit Partner Site</a>
-    </div>
-
-    <!-- Section 3: File Downloads -->
-    <div class="card">
-      <h2>3. File Downloads</h2>
-      <p>GA4 automatically tracks downloads for common file types (pdf, zip, etc.).</p>
-      <a href="/dummy.pdf" class="btn btn-primary" download>Download PDF Report</a>
-    </div>
-
-    <!-- Section 4: Video Engagement -->
-    <div class="card">
-      <h2>4. Video Engagement</h2>
-      <p>Play, pause, and complete the video to test video events.</p>
-      <div class="video-wrapper">
-        <!-- Added enablejsapi=1 for better API control if needed, though GA4 handles standard embeds well -->
-        <iframe width="560" height="315" src="https://www.youtube.com/embed/vmOlj87Fu9E?enablejsapi=1"
-          title="YouTube video player" frameborder="0"
-          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-          allowfullscreen></iframe>
+  <section class="container">
+    <h2 class="section-title">Why Urban Threads?</h2>
+    <div style="display: flex; gap: 2rem; text-align: center;">
+      <div style="flex: 1;">
+        <h3>Premium Quality</h3>
+        <p>100% organic cotton that feels soft against your skin and lasts wash after wash.</p>
+      </div>
+      <div style="flex: 1;">
+        <h3>Sustainable</h3>
+        <p>Ethically sourced materials and fair labor practices are at our core.</p>
+      </div>
+      <div style="flex: 1;">
+        <h3>Perfect Fit</h3>
+        <p>Designed for every body type, ensuring you look and feel your best.</p>
       </div>
     </div>
+  </section>
 
-    <!-- Section 5: Form Interactions -->
-    <div class="card">
-      <h2>5. Form Submission</h2>
-      <p>Submit the form to test 'form_start' and 'form_submit' events.</p>
-      <form id="contact-form" action="/submit-form" method="POST"
-        onsubmit="event.preventDefault(); alert('Form submitted! (Prevented actual reload for testing)');">
-        <input type="text" name="name" placeholder="Your Name" required>
-        <input type="email" name="email" placeholder="Your Email" required>
-        <button type="submit" class="btn btn-primary">Send Message</button>
-      </form>
-    </div>
-
-    <!-- Section 6: Scroll Tracking -->
-    <div class="card">
-      <h2>6. Scroll Tracking</h2>
-      <p>Scroll down to the bottom to trigger the 'scroll' event (90% depth).</p>
-      <div class="scroll-spacer">
-        Keep Scrolling...
-      </div>
-      <p style="text-align: center; margin-top: 2rem;">You've reached the bottom!</p>
-    </div>
-
-    <!-- Section 7: Traffic Simulation (UTM Parameters) -->
-    <div class="card">
-      <h2>7. Simulate Traffic Sources</h2>
-      <p>Click these buttons to reload the page with UTM parameters (simulating a visitor from these sources).</p>
-      <a href="?utm_source=facebook&utm_medium=social&utm_campaign=test_campaign" class="btn btn-primary"
-        style="background: #1877F2;">Simulate Facebook Visitor</a>
-      <a href="?utm_source=google&utm_medium=cpc&utm_campaign=test_campaign" class="btn btn-primary"
-        style="background: #DB4437;">Simulate Google Ads Visitor</a>
-      <a href="?utm_source=newsletter&utm_medium=email&utm_campaign=weekly_update" class="btn btn-primary"
-        style="background: #F59E0B;">Simulate Email Visitor</a>
-      <br>
-      <a href="index.html" class="btn btn-secondary" style="margin-top: 1rem;">Clear Parameters</a>
-    </div>
-
-  </div>
-
+  <footer>
+    <p>&copy; 2025 Urban Threads. All rights reserved.</p>
+  </footer>
 </body>
 
 </html>
