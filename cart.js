@@ -123,3 +123,21 @@ document.addEventListener('DOMContentLoaded', () => {
     updateCartIcon();
     renderCartPage();
 });
+
+// Complete Purchase
+function completePurchase(event) {
+    event.preventDefault();
+
+    // Simulate processing
+    const btn = event.target.querySelector('button[type="submit"]');
+    const originalText = btn.innerText;
+    btn.innerText = 'Processing...';
+    btn.disabled = true;
+
+    setTimeout(() => {
+        // Clear cart
+        localStorage.removeItem('urbanThreadsCart');
+        // Redirect
+        window.location.href = 'thank_you.html';
+    }, 1500);
+}

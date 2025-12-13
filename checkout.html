@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout | Urban Threads</title>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PSRJ9NDJ');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="style.css">
+    <script src="cart.js"></script>
+    <style>
+        .checkout-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+
+        @media (max-width: 768px) {
+            .checkout-grid {
+                grid-template-columns: 1fr;
+                gap: 2rem;
+            }
+        }
+
+        .summary-card {
+            background: #fafafa;
+            padding: 2rem;
+            border-radius: 4px;
+            border: 1px solid #eee;
+            position: sticky;
+            top: 100px;
+        }
+    </style>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSRJ9NDJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">URBAN THREADS</a>
+        <div class="nav-links">
+            <a href="index.html">Home</a>
+            <a href="products.html">Shop</a>
+            <a href="blog_page.html">Journal</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <a href="cart.html" class="cart-icon" style="text-decoration: none; color: inherit;">🛒 (0)</a>
+    </nav>
+
+    <div class="container">
+        <h1 class="section-title">Checkout</h1>
+
+        <div class="checkout-grid">
+            <!-- Left Column: Delivery Form -->
+            <div>
+                <h2 style="margin-bottom: 2rem; font-size: 1.5rem;">Delivery Address</h2>
+                <form id="checkout-form" class="contact-form" onsubmit="completePurchase(event)">
+                    <div class="form-group">
+                        <label for="fullname">Full Name</label>
+                        <input type="text" id="fullname" name="fullname" required placeholder="John Doe">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="email">Email Address</label>
+                        <input type="email" id="email" name="email" required placeholder="john@example.com">
+                    </div>
+
+                    <div class="form-group">
+                        <label for="address">Address</label>
+                        <input type="text" id="address" name="address" required placeholder="123 Fashion St">
+                    </div>
+
+                    <div style="display: grid; grid-template-columns: 1fr 1fr; gap: 1rem;">
+                        <div class="form-group">
+                            <label for="city">City</label>
+                            <input type="text" id="city" name="city" required placeholder="New York">
+                        </div>
+                        <div class="form-group">
+                            <label for="zip">Zip / Postal Code</label>
+                            <input type="text" id="zip" name="zip" required placeholder="10001">
+                        </div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="country">Country</label>
+                        <input type="text" id="country" name="country" required placeholder="United States">
+                    </div>
+
+                    <h2 style="margin: 2rem 0 1rem; font-size: 1.5rem;">Payment</h2>
+                    <div class="form-group">
+                        <div style="border: 1px solid #ddd; padding: 1rem; border-radius: 4px; background: #fff;">
+                            <label style="display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0;">
+                                <input type="radio" name="payment" checked>
+                                Credit Card (Simulated Only)
+                            </label>
+                        </div>
+                    </div>
+
+                    <button type="submit" class="btn" style="width: 100%; margin-top: 1rem; padding: 1.2rem;">Complete
+                        Purchase</button>
+                </form>
+            </div>
+
+            <!-- Right Column: Order Summary -->
+            <div>
+                <div class="summary-card">
+                    <h3 style="margin-bottom: 1.5rem; border-bottom: 1px solid #ddd; padding-bottom: 1rem;">Order
+                        Summary</h3>
+                    <div id="checkout-summary-items">
+                        <!-- Items populated by JS -->
+                        <p>Loading items...</p>
+                    </div>
+
+                    <div style="margin-top: 2rem; border-top: 1px solid #ddd; padding-top: 1rem;">
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Subtotal</span>
+                            <span id="checkout-subtotal">$0.00</span>
+                        </div>
+                        <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                            <span>Shipping</span>
+                            <span>Free</span>
+                        </div>
+                        <div
+                            style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-top: 1rem;">
+                            <span>Total</span>
+                            <span id="checkout-total">$0.00</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Urban Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        // Inline script to populate summary to avoid changing cart.js too much initially if not needed
+        // but user requested "complete button to transfer to thank you page", so I need a function.
+        document.addEventListener('DOMContentLoaded', () => {
+            const cart = getCart(); // from cart.js
+            const container = document.getElementById('checkout-summary-items');
+            const subtotalEl = document.getElementById('checkout-subtotal');
+            const totalEl = document.getElementById('checkout-total');
+
+            if (cart.length === 0) {
+                container.innerHTML = '<p>Your cart is empty.</p>';
+                return;
+            }
+
+            let total = 0;
+            container.innerHTML = cart.map(item => {
+                total += item.price * item.quantity;
+                return `
+                    <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem;">
+                        <span>${item.name} x ${item.quantity}</span>
+                        <span>$${(item.price * item.quantity).toFixed(2)}</span>
+                    </div>
+                `;
+            }).join('');
+
+            subtotalEl.innerText = '$' + total.toFixed(2);
+            totalEl.innerText = '$' + total.toFixed(2);
+        });
+    </script>
+</body>
+
+</html>

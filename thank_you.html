@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Your Cart | Urban Threads</title>
+    <title>Thank You | Urban Threads</title>
 
     <!-- Google Tag Manager -->
     <script>(function (w, d, s, l, i) {
@@ -38,28 +38,27 @@
         <a href="cart.html" class="cart-icon" style="text-decoration: none; color: inherit;">🛒 (0)</a>
     </nav>
 
-    <div class="container" style="max-width: 800px;">
-        <h1 class="section-title">Your Cart</h1>
-
-        <div style="background: white; padding: 2rem; border-radius: 4px; border: 1px solid #e5e5e5;">
-            <div id="cart-items-container">
-                <!-- Cart items will be loaded here via JS -->
-            </div>
-
-            <div
-                style="margin-top: 2rem; border-top: 1px solid #333; padding-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
-                <h3 style="font-size: 1.25rem;">Total</h3>
-                <h3 id="cart-total" style="font-size: 1.5rem;">$0.00</h3>
-            </div>
-
-            <button class="btn" onclick="window.location.href='checkout.html'"
-                style="width: 100%; margin-top: 2rem; padding: 1.2rem;">Proceed to Checkout</button>
-        </div>
+    <div class="container" style="text-align: center; padding: 6rem 1rem;">
+        <div style="font-size: 4rem; margin-bottom: 1rem;">🎉</div>
+        <h1 class="section-title" style="margin-bottom: 1rem;">Thank You!</h1>
+        <p style="font-size: 1.2rem; color: #666; max-width: 600px; margin: 0 auto 3rem;">
+            Your order has been placed successfully. A confirmation email is on its way to you.
+        </p>
+        <a href="products.html" class="btn" style="padding: 1rem 3rem;">Continue Shopping</a>
     </div>
 
     <footer>
         <p>&copy; 2025 Urban Threads. All rights reserved.</p>
     </footer>
+
+    <script>
+        // Clear cart on load
+        document.addEventListener('DOMContentLoaded', () => {
+            // We can manually clear localStorage here to be safe
+            localStorage.removeItem('urbanThreadsCart');
+            updateCartIcon(); // Update the icon to 0
+        });
+    </script>
 </body>
 
 </html>
