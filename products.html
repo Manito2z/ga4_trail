@@ -18,6 +18,7 @@
     <!-- End Google Tag Manager -->
 
     <link rel="stylesheet" href="style.css">
+    <script src="cart.js"></script>
 </head>
 
 <body>
@@ -34,7 +35,7 @@
             <a href="blog_page.html">Journal</a>
             <a href="contact.html">Contact</a>
         </div>
-        <div class="cart-icon">🛒 (0)</div>
+        <a href="cart.html" class="cart-icon" style="text-decoration: none; color: inherit;">🛒 (0)</a>
     </nav>
 
     <div class="container">
@@ -48,7 +49,9 @@
                 <div class="product-info">
                     <h3 class="product-title">The Classic White</h3>
                     <p class="product-price">$29.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('The Classic White', 29.00, 'https://images.unsplash.com/photo-1521572163474-6864f9cf17ab?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
 
@@ -59,7 +62,9 @@
                 <div class="product-info">
                     <h3 class="product-title">Midnight Black</h3>
                     <p class="product-price">$29.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('Midnight Black', 29.00, 'https://images.unsplash.com/photo-1583743814966-8936f5b7be1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
 
@@ -70,7 +75,9 @@
                 <div class="product-info">
                     <h3 class="product-title">Heather Grey V-Neck</h3>
                     <p class="product-price">$32.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('Heather Grey V-Neck', 32.00, 'https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
 
@@ -81,7 +88,9 @@
                 <div class="product-info">
                     <h3 class="product-title">Vintage Graphic</h3>
                     <p class="product-price">$38.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('Vintage Graphic', 38.00, 'https://images.unsplash.com/photo-1503341504253-dff4815485f1?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
 
@@ -92,7 +101,9 @@
                 <div class="product-info">
                     <h3 class="product-title">Organic Olive</h3>
                     <p class="product-price">$34.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('Organic Olive', 34.00, 'https://images.unsplash.com/photo-1618354691373-d851c5c3a990?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
 
@@ -103,7 +114,9 @@
                 <div class="product-info">
                     <h3 class="product-title">Navy Pocket Tee</h3>
                     <p class="product-price">$32.00</p>
-                    <button class="btn" onclick="alert('Added to cart!')">Add to Cart</button>
+                    <button class="btn"
+                        onclick="addToCart('Navy Pocket Tee', 32.00, 'https://images.unsplash.com/photo-1562157873-818bc0726f68?ixlib=rb-1.2.1&auto=format&fit=crop&w=500&q=80')">Add
+                        to Cart</button>
                 </div>
             </div>
         </div>
