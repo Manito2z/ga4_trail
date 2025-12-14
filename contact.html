@@ -45,8 +45,7 @@
             <p style="text-align: center; margin-bottom: 2rem; color: #666;">Have questions about your order or our
                 products? We'd love to hear from you.</p>
 
-            <form action="#" method="POST"
-                onsubmit="event.preventDefault(); alert('Message sent! We will get back to you shortly.');">
+            <form id="contact-form" action="#" method="POST">
                 <div class="form-group">
                     <label for="name">Full Name</label>
                     <input type="text" id="name" name="name" required>
@@ -75,6 +74,28 @@
     <footer>
         <p>&copy; 2025 Urban Threads. All rights reserved.</p>
     </footer>
+
+    <script>
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Push event to Data Layer
+            window.dataLayer = window.dataLayer || [];
+            window.dataLayer.push({
+                event: 'generate_lead',
+                formName: 'contact_us',
+                formLocation: 'contact_page'
+            });
+
+            console.log('DataLayer Push: generate_lead event fired');
+
+            // Show success message
+            alert('Message sent! We will get back to you shortly.');
+
+            // Optional: Reset form
+            this.reset();
+        });
+    </script>
 </body>
 
 </html>
