@@ -119,10 +119,69 @@ function renderCartPage() {
 }
 
 // Initialize on page load
+// Initialize on page load
 document.addEventListener('DOMContentLoaded', () => {
     updateCartIcon();
     renderCartPage();
+    checkLoginState();
 });
+
+// Check Login User
+function checkLoginState() {
+    const navLinks = document.querySelector('.nav-links');
+    if (!navLinks) return;
+
+    // Check if login link exists, if not create it
+    let loginLink = document.querySelector('a[href="login.html"], a#auth-link');
+
+    // Fallback: search by text content if href changed
+    if (!loginLink) {
+        const links = navLinks.querySelectorAll('a');
+        for (let link of links) {
+            if (link.innerText.includes('Login') || link.innerText.includes('Logout')) {
+                loginLink = link;
+                break;
+            }
+        }
+    }
+
+    if (!loginLink) {
+        // If we are already on login.html, we might not want to duplicate it if it's there?
+        // But for other pages, we dynamically add it.
+        // Also avoid adding it on login.html if it's not needed, but usually navbar is there.
+        // Let's create it.
+        loginLink = document.createElement('a');
+        loginLink.className = 'nav-bar';
+        loginLink.id = 'auth-link';
+        navLinks.appendChild(loginLink);
+    } else {
+        loginLink.id = 'auth-link'; // Ensure it has ID for future reference
+    }
+
+    const user = localStorage.getItem('urbanThreadsUser');
+
+    if (user) {
+        // User is logged in
+        loginLink.innerHTML = `Logout (<b>${user}</b>)`;
+        loginLink.href = "#";
+        loginLink.onclick = (e) => {
+            e.preventDefault();
+            logoutUser();
+        };
+    } else {
+        // User is logged out
+        loginLink.innerText = 'Login';
+        loginLink.href = 'login.html';
+        loginLink.onclick = null; // Remove previous handlers if any
+    }
+}
+
+function logoutUser() {
+    if (confirm('Are you sure you want to logout?')) {
+        localStorage.removeItem('urbanThreadsUser');
+        window.location.href = 'index.html';
+    }
+}
 
 // Complete Purchase
 function completePurchase(event) {

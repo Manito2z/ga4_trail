@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login | Urban Threads</title>
+
+    <!-- Google Tag Manager -->
+    <script>(function (w, d, s, l, i) {
+            w[l] = w[l] || []; w[l].push({
+                'gtm.start':
+                    new Date().getTime(), event: 'gtm.js'
+            }); var f = d.getElementsByTagName(s)[0],
+                j = d.createElement(s), dl = l != 'dataLayer' ? '&l=' + l : ''; j.async = true; j.src =
+                    'https://www.googletagmanager.com/gtm.js?id=' + i + dl; f.parentNode.insertBefore(j, f);
+        })(window, document, 'script', 'dataLayer', 'GTM-PSRJ9NDJ');</script>
+    <!-- End Google Tag Manager -->
+
+    <link rel="stylesheet" href="style.css">
+    <script src="cart.js"></script>
+</head>
+
+<body>
+    <!-- Google Tag Manager (noscript) -->
+    <noscript><iframe src="https://www.googletagmanager.com/ns.html?id=GTM-PSRJ9NDJ" height="0" width="0"
+            style="display:none;visibility:hidden"></iframe></noscript>
+    <!-- End Google Tag Manager (noscript) -->
+
+    <nav class="navbar">
+        <a href="index.html" class="logo">URBAN THREADS</a>
+        <div class="nav-links">
+            <a href="index.html" class="nav-bar">Home</a>
+            <a href="products.html" class="nav-bar">Shop</a>
+            <a href="blog_page.html" class="nav-bar">Journal</a>
+            <a href="contact.html" class="nav-bar">Contact</a>
+            <a href="login.html" class="nav-bar" style="font-weight: 700;">Login</a>
+        </div>
+        <a href="cart.html" class="cart-icon" style="text-decoration: none; color: inherit;">🛒 (0)</a>
+    </nav>
+
+    <div class="container" style="max-width: 400px; padding-top: 4rem;">
+        <h1 class="section-title">Login</h1>
+
+        <div style="background: white; padding: 2rem; border-radius: 4px; border: 1px solid #e5e5e5;">
+            <form id="login-form">
+                <div class="form-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" required placeholder="Enter 'abc'">
+                </div>
+
+                <div class="form-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" required placeholder="Enter '123'">
+                </div>
+
+                <div id="error-message" style="color: red; margin-bottom: 1rem; display: none;">
+                    Invalid credentials. Try abc / 123
+                </div>
+
+                <button type="submit" class="btn" style="width: 100%;">Sign In</button>
+            </form>
+            <p style="margin-top: 1rem; text-align: center; font-size: 0.9rem; color: #666;">
+                Demo Credentials: abc / 123
+            </p>
+        </div>
+    </div>
+
+    <footer>
+        <p>&copy; 2025 Urban Threads. All rights reserved.</p>
+    </footer>
+
+    <script>
+        document.getElementById('login-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            const username = document.getElementById('username').value;
+            const password = document.getElementById('password').value;
+            const errorMsg = document.getElementById('error-message');
+
+            if (username === 'abc' && password === '123') {
+                // Success!
+                errorMsg.style.display = 'none';
+
+                // Push to Data Layer as requested
+                window.dataLayer = window.dataLayer || [];
+                window.dataLayer.push({
+                    event: 'login',
+                    userId: '29jk38vak38svak', // Dummy ID from screenshot
+                    clientType: 'vip',
+                    registrationCountry: 'United States',
+                    countryCode: 'us',
+                    loginMethod: 'email'
+                });
+
+                // Visual feedback and redirect
+                const btn = e.target.querySelector('button');
+                btn.innerText = 'Success! Redirecting...';
+                btn.style.backgroundColor = '#4CAF50';
+
+                console.log('DataLayer Push Event Fired:', window.dataLayer);
+
+                setTimeout(() => {
+                    // Start session (optional but good for UX)
+                    localStorage.setItem('urbanThreadsUser', username);
+                    window.location.href = 'index.html';
+                }, 1500);
+
+            } else {
+                // Fail
+                errorMsg.style.display = 'block';
+            }
+        });
+    </script>
+</body>
+
+</html>
