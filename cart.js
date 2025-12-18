@@ -237,13 +237,15 @@ function completePurchase(event) {
     window.dataLayer.push({
         'event': 'purchase',
         'ecommerce': {
-            'currency': 'USD', // Site currency
-            'value': totalValue.toFixed(2),
-            'tax': taxAmount.toFixed(2),
-            'shipping': shippingAmount.toFixed(2),
-            'coupon': couponCode,
-            'transaction_id': Math.floor(Math.random() * 1000000).toString(), // Random Transaction ID
-            'items': items
+            'purchase': {
+                'currency': 'USD', // Site currency
+                'value': totalValue.toFixed(2),
+                'tax': taxAmount.toFixed(2),
+                'shipping': shippingAmount.toFixed(2),
+                'coupon': couponCode,
+                'transaction_id': Math.floor(Math.random() * 1000000).toString(), // Random Transaction ID
+                'items': items
+            }
         }
     });
 
