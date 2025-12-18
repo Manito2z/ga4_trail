@@ -163,9 +163,9 @@
                 return;
             }
 
-            let total = 0;
+            let subtotal = 0;
             container.innerHTML = cart.map(item => {
-                total += item.price * item.quantity;
+                subtotal += item.price * item.quantity;
                 return `
                     <div style="display: flex; justify-content: space-between; margin-bottom: 1rem; font-size: 0.9rem;">
                         <span>${item.name} x ${item.quantity}</span>
@@ -174,8 +174,39 @@
                 `;
             }).join('');
 
-            subtotalEl.innerText = '$' + total.toFixed(2);
-            totalEl.innerText = '$' + total.toFixed(2);
+            // Calculate totals matching Data Layer logic
+            const discount = subtotal * 0.10;
+            const discountedSubtotal = subtotal - discount;
+            const tax = discountedSubtotal * 0.07;
+            const shipping = 3.00;
+            const total = discountedSubtotal + tax + shipping;
+
+            const summaryHtml = `
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Subtotal</span>
+                    <span>$${subtotal.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem; color: #2ecc71;">
+                    <span>Discount (10%)</span>
+                    <span>-$${discount.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Tax (7%)</span>
+                    <span>$${tax.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; margin-bottom: 0.5rem;">
+                    <span>Shipping</span>
+                    <span>$${shipping.toFixed(2)}</span>
+                </div>
+                <div style="display: flex; justify-content: space-between; font-weight: 700; font-size: 1.2rem; margin-top: 1rem; border-top: 1px solid #ddd; padding-top: 1rem;">
+                    <span>Total</span>
+                    <span id="checkout-total">$${total.toFixed(2)}</span>
+                </div>
+            `;
+
+            // Replace the static summary rows with dynamic ones
+            const summaryContainer = document.querySelector('.summary-card > div:last-child');
+            summaryContainer.innerHTML = summaryHtml;
         });
     </script>
 </body>

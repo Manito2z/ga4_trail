@@ -184,14 +184,71 @@ function logoutUser() {
 }
 
 // Complete Purchase
+// Complete Purchase
 function completePurchase(event) {
     event.preventDefault();
 
     // Simulate processing
     const btn = event.target.querySelector('button[type="submit"]');
-    const originalText = btn.innerText;
+    // const originalText = btn.innerText; // Unused
     btn.innerText = 'Processing...';
     btn.disabled = true;
+
+    // Prepare Purchase Data
+    const cart = getCart();
+
+    // Helper to generate a consistent ID from the name
+    const generateId = (name) => {
+        return name.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 10) || 'ITEM001';
+    };
+
+    let itemsTotal = 0;
+    const items = cart.map((item, index) => {
+        const lineTotal = item.price * item.quantity;
+        itemsTotal += lineTotal;
+        return {
+            item_name: item.name,
+            item_id: generateId(item.name),
+            price: item.price.toFixed(2),
+            item_brand: 'Urban Threads',
+            item_category: 'Apparel',
+            quantity: item.quantity,
+            item_variant: 'Standard' // Default variant
+        };
+    });
+
+    // Calculations based on requirements
+    // Coupon: 10% discount
+    const couponCode = 'SUMMER20';
+    const discountAmount = itemsTotal * 0.10;
+    const discountedSubtotal = itemsTotal - discountAmount;
+
+    // Tax: 7% (on discounted total usually, or total? I'll use discounted total to be standard)
+    const taxAmount = discountedSubtotal * 0.07;
+
+    // Shipping: $3
+    const shippingAmount = 3.00;
+
+    // Total Value
+    const totalValue = discountedSubtotal + taxAmount + shippingAmount;
+
+    // Push to Data Layer
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'purchase',
+        'ecommerce': {
+            'currency': 'USD', // Site currency
+            'value': totalValue.toFixed(2),
+            'tax': taxAmount.toFixed(2),
+            'shipping': shippingAmount.toFixed(2),
+            'coupon': couponCode,
+            'transaction_id': Math.floor(Math.random() * 1000000).toString(), // Random Transaction ID
+            'items': items
+        }
+    });
+
+    // Log to console for debugging
+    console.log('Purchase Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
 
     setTimeout(() => {
         // Clear cart
