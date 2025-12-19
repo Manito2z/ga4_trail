@@ -29,33 +29,132 @@ function addToCart(name, price, image) {
     }
 
     saveCart(cart);
+
+    // Push add_to_cart event to Data Layer
+    // Helper to generate a consistent ID from the name (copying logic from purchase event briefly for consistency, 
+    // ideally this logic should be a shared helper function but for now inline is fine to avoid refactoring everything)
+    const generateId = (n) => n.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 10) || 'ITEM001';
+
+    window.dataLayer = window.dataLayer || [];
+    window.dataLayer.push({
+        'event': 'add_to_cart',
+        'ecommerce': {
+            'currency': 'USD',
+            'value': price.toFixed(2),
+            'items': [{
+                'item_name': name,
+                'item_id': generateId(name),
+                'price': price.toFixed(2),
+                'item_brand': 'Urban Threads',
+                'item_category': 'Apparel',
+                'quantity': 1
+            }]
+        }
+    });
+
+    console.log('Add to Cart Event Pushed:', window.dataLayer[window.dataLayer.length - 1]);
+
     alert(`${name} added to cart!`);
 }
 
 // Remove item from cart
 function removeFromCart(name) {
     let cart = getCart();
+    const itemToRemove = cart.find(item => item.name === name); // Get item details before removing
+
+    if (itemToRemove) {
+        // Shared helper for ID generation (could be refactored to specific function later)
+        const generateId = (n) => n.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 10) || 'ITEM001';
+
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'remove_from_cart',
+            'ecommerce': {
+                'currency': 'USD',
+                'value': itemToRemove.price.toFixed(2),
+                'items': [{
+                    'item_name': itemToRemove.name,
+                    'item_id': generateId(itemToRemove.name),
+                    'price': itemToRemove.price.toFixed(2),
+                    'item_brand': 'Urban Threads',
+                    'item_category': 'Apparel',
+                    'quantity': itemToRemove.quantity // Removing all quantity of this item
+                }]
+            }
+        });
+        console.log('Remove from Cart Event Pushed (Full Item):', window.dataLayer[window.dataLayer.length - 1]);
+    }
+
     cart = cart.filter(item => item.name !== name);
     saveCart(cart);
     renderCartPage(); // Re-render if on cart page
 }
 
 // Update quantity
+// Update quantity
 function updateQuantity(name, change) {
     const cart = getCart();
     const item = cart.find(item => item.name === name);
 
-    if (item) {
-        item.quantity += change;
-        if (item.quantity <= 0) {
-            removeFromCart(name);
-            return;
-        }
+    if (!item) return;
+
+    const newQuantity = item.quantity + change;
+
+    // If quantity becomes 0 or less, the item should be removed.
+    if (newQuantity <= 0) {
+        removeFromCart(name);
+        return;
     }
 
+    // Identify change type for event
+    const generateId = (n) => n.toUpperCase().replace(/[^A-Z0-9]/g, '').substring(0, 10) || 'ITEM001';
+
+    if (change < 0) {
+        // Remove event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'remove_from_cart',
+            'ecommerce': {
+                'currency': 'USD',
+                'value': item.price.toFixed(2),
+                'items': [{
+                    'item_name': item.name,
+                    'item_id': generateId(item.name),
+                    'price': item.price.toFixed(2),
+                    'item_brand': 'Urban Threads',
+                    'item_category': 'Apparel',
+                    'quantity': Math.abs(change)
+                }]
+            }
+        });
+        console.log('Remove from Cart Event Pushed (Quantity Decrease):', window.dataLayer[window.dataLayer.length - 1]);
+    } else if (change > 0) {
+        // Add event
+        window.dataLayer = window.dataLayer || [];
+        window.dataLayer.push({
+            'event': 'add_to_cart',
+            'ecommerce': {
+                'currency': 'USD',
+                'value': item.price.toFixed(2),
+                'items': [{
+                    'item_name': item.name,
+                    'item_id': generateId(item.name),
+                    'price': item.price.toFixed(2),
+                    'item_brand': 'Urban Threads',
+                    'item_category': 'Apparel',
+                    'quantity': change
+                }]
+            }
+        });
+        console.log('Add to Cart Event Pushed (Quantity Increase):', window.dataLayer[window.dataLayer.length - 1]);
+    }
+
+    // Update state
+    item.quantity = newQuantity;
     saveCart(cart);
     renderCartPage();
 }
+
 
 // Update Cart Icon Count
 function updateCartIcon() {
